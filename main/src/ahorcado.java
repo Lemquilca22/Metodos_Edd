@@ -21,7 +21,7 @@ public class ahorcado {
         }
         return letra;
     }
-public static boolean ganaste(char charpalabra[], char ahorcado[], String s) {
+    public static boolean ganaste(char charpalabra[], char ahorcado[], String s) {
         boolean ganaste=true;
     for (int i = 0; i < s.length(); i++) {
         if (ahorcado[i] != charpalabra[i]) {
@@ -58,7 +58,6 @@ public static boolean ganaste(char charpalabra[], char ahorcado[], String s) {
                 System.out.println();
                 System.out.println("Ingresa una letra: ");
                 letra= trycatch();
-//                letra = sc.next().charAt(0);
                 for (int i = 0; i < s.length(); i++) {
 
                     if (letra == charpalabra[i]) {
@@ -77,17 +76,12 @@ public static boolean ganaste(char charpalabra[], char ahorcado[], String s) {
                     System.out.print(ahorcado[j]);
                 }
                 boolean ganaste = ganaste( charpalabra, ahorcado, s);
-                if (ganaste == true) {
-                    System.out.println();
-                    System.out.println("GANASTE");
-                    System.out.println();
-                    partida = false;
+                if (ganaste) {
+                    System.out.println("\nGANASTE");
                 }
                 if (vida <= 0) {
                     partida = false;
-                    System.out.println();
-                    System.out.println("Te quedaste sin vidas, GAME OVER");
-                    System.out.println();
+                    System.out.println("\nTe quedaste sin vidas, GAME OVER");
                 }
             }
         }
