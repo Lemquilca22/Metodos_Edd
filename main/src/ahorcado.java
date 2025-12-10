@@ -4,19 +4,33 @@ import java.util.Scanner;
 
 public class ahorcado {
     //Metodo para trycatch
-    public static void trycatch(char letra) {
+    public static char trycatch() {
+        char letra='a';
         Scanner sc = new Scanner(System.in);
         boolean trycat = true;
         while (trycat) {
             try {
                 letra = sc.next().charAt(0);
-
+                if (!((int) letra>=65 && (int) letra<=90 || (int)letra>=97 && (int)letra<=122 )){
+                    throw new Exception("Error, ingresa una letra");
+                }
+                trycat=false;
             } catch (Exception e) {
-
+              System.out.println(e);
             }
         }
+        return letra;
     }
-
+public static boolean ganaste(char charpalabra[], char ahorcado[], String s) {
+        boolean ganaste=true;
+    for (int i = 0; i < s.length(); i++) {
+        if (ahorcado[i] != charpalabra[i]) {
+            ganaste = false;
+            break;
+        }
+    }
+    return ganaste;
+}
 
 
     public static void main(String[] args) {
@@ -43,8 +57,8 @@ public class ahorcado {
                 int frecuencia = 0;
                 System.out.println();
                 System.out.println("Ingresa una letra: ");
-                letra = sc.next().charAt(0);
-
+                letra= trycatch();
+//                letra = sc.next().charAt(0);
                 for (int i = 0; i < s.length(); i++) {
 
                     if (letra == charpalabra[i]) {
@@ -62,22 +76,18 @@ public class ahorcado {
                 for (int j = 0; j < s.length(); j++) {
                     System.out.print(ahorcado[j]);
                 }
-                boolean ganaste = true;
-                for (int i = 0; i < s.length(); i++) {
-                    if (ahorcado[i] != charpalabra[i]) {
-                        ganaste = false;
-                        break;
-                    }
-                }
+                boolean ganaste = ganaste( charpalabra, ahorcado, s);
                 if (ganaste == true) {
                     System.out.println();
                     System.out.println("GANASTE");
+                    System.out.println();
                     partida = false;
                 }
                 if (vida <= 0) {
                     partida = false;
                     System.out.println();
                     System.out.println("Te quedaste sin vidas, GAME OVER");
+                    System.out.println();
                 }
             }
         }
